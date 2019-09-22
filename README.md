@@ -1,37 +1,13 @@
 # test-performance
 
-#### 介绍
-性能测试使用到的一些东东
+## 介绍
+性能测试使用到的一些东东，这里以MySQL数据库为例讲解，其他关系型数据库可以借鉴参考。
 
-#### 软件架构
-软件架构说明
+## 01 测试数据准备
+<pre>在性能测试之前，如果还没大量数据沉淀，需要人为进行测试数据生成</pre>
+### 1、数据库脚本方式
 
-
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+#### 1.1、常用数据库函数
 
 
-#### 码云特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+### 2、编写程序方式
