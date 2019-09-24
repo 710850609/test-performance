@@ -1,5 +1,6 @@
 -- for mysql
--- 生成指定时间范围的随机时间
+-- 说明： 生成指定时间范围的随机时间
+-- 使用例子： select rand_date(STR_TO_DATE('2018-05-21 23:59:59', '%Y-%m-%d %H:%i:%s'), now());  -- 输出 2019-07-13 16:22:44
 
 delimiter $$
 create function rand_date(start_time TIMESTAMP, end_time TIMESTAMP) RETURNS TIMESTAMP
@@ -34,7 +35,7 @@ BEGIN
         SET tmp_max_val = DATE_FORMAT(end_time, '%m') + 0;
     ELSE
         SET tmp_min_val = 1;
-				SET tmp_max_val = 12;
+        SET tmp_max_val = 12;
         SET tmp_in_max_range = 0;
     END IF;
     SET tmp_rand_val = tmp_min_val + CEIL(rand() * (tmp_max_val - tmp_min_val));
@@ -58,6 +59,7 @@ BEGIN
     ELSE
         SET tmp_min_val = 1;
         IF tmp_rand_val = 2 THEN
+            -- 由于闰年需要进行判断，为避免代码过于复杂，便于理解，这里暂不考虑闰年有2月29日的情况
             SET tmp_max_val = 28;
         ELSEIF tmp_rand_val = 1 or tmp_rand_val = 3 or tmp_rand_val = 5 or tmp_rand_val = 7 or tmp_rand_val = 8 or tmp_rand_val = 10 or tmp_rand_val = 12 THEN
             SET tmp_max_val = 31;

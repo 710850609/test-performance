@@ -1,5 +1,6 @@
 -- for mysql
--- 生成固定长度的随机整数
+-- 说明：生成固定长度的随机整数
+-- 使用例子：select rand_fixed_num(6); -- 输出 401605
 
 delimiter $$
 create function rand_fixed_num(num int) returns int

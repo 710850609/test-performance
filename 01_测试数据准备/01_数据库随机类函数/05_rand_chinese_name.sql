@@ -1,5 +1,6 @@
 -- for mysql
--- 生成随机中文姓名，使用穷举法，单姓，名字1-2个字
+-- 说明： 生成随机中文姓名，使用穷举法，单姓，名字1-2个字
+-- 使用例子： select rand_chinese_name(); -- 输出 熊元香
 
 delimiter $$
 CREATE FUNCTION rand_chinese_name () RETURNS VARCHAR(9) charset 'utf8'

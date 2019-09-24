@@ -1,5 +1,6 @@
 -- for mysql
--- 生成随机手机号
+-- 说明： 生成随机手机号
+-- 使用例子： select rand_mobile(); -- 输出 17680812643
 
 delimiter $$
 CREATE FUNCTION rand_mobile() RETURNS char(11) CHARSET utf8

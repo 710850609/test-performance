@@ -1,5 +1,6 @@
 -- for mysql
--- 生成指定范围的随机正整数，包括入参中的最大、最小值
+-- 说明：生成指定范围的随机正整数，包括入参中的最大、最小值
+-- 使用例子： select rand_range_num(1000, 9999); -- 输出 1541
 
 delimiter $$
 CREATE FUNCTION rand_range_num(min int, max int) RETURNS INT
