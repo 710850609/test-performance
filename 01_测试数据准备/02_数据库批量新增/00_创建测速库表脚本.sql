@@ -15,7 +15,7 @@ CREATE TABLE `account` (
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `uid` varchar(255) DEFAULT NULL COMMENT 'uid',
   `last_login_time` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `last_login_ip` varchar(12) DEFAULT NULL COMMENT '最后登录IP',
+  `last_login_ip` varchar(20) DEFAULT NULL COMMENT '最后登录IP',
   `error_login_count` int(2) DEFAULT NULL COMMENT '连续登录错误次数',
   `login_count` int(12) DEFAULT NULL COMMENT '登录次数',
   PRIMARY KEY (`id`),
