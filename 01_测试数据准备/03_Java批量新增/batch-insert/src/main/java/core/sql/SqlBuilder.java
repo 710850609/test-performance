@@ -37,8 +37,8 @@ public class SqlBuilder implements Dialect {
      */
     public String getInsertSqlTemplate(int num) {
         checkForInsert();
-        StringBuilder sqlBuf = new StringBuilder("insert into (");
-        sqlBuf.append(this.tableName);
+        StringBuilder sqlBuf = new StringBuilder("insert into ");
+        sqlBuf.append(this.tableName).append(" (");
         int columnSize = columns.size();
         for (int i = 0; i < columnSize; i++) {
             sqlBuf.append(getColumnSeparator()).append(columns.get(i)).append(getColumnSeparator()).append(",");

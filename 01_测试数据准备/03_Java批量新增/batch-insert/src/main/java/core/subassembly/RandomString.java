@@ -2,6 +2,7 @@ package core.subassembly;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 生成随机字符串
@@ -19,7 +20,7 @@ public class RandomString {
     /** 中国地区码 */
     private static final String[] AREA_CODE = {"110113", "120223", "130403", "130425", "130433", "130731", "131000", "131023", "131024", "131081", "140106", "140222", "140226", "140227", "140524", "140600", "140828", "140922", "140981", "141129", "141130", "150426", "150525", "150727", "152525", "210201", "210300", "210801", "211101", "220103", "220182", "220203", "220323", "220500", "220821", "222400", "230108", "230307", "230703", "230710", "230833", "231003", "231222", "231223", "231281", "232721", "232722", "320201", "320302", "320503", "320584", "320724", "320831", "320902", "320982", "321003", "321081", "321181", "321201", "330000", "330108", "330122", "330183", "330205", "330225", "330411", "330600", "330723", "340103", "340207", "340301", "340603", "340802", "341221", "341421", "341521", "341822", "350206", "350427", "350526", "350721", "360421", "360425", "360428", "370105", "370611", "370685", "370687", "370883", "370900", "370921", "371311", "371422", "371424", "410302", "410782", "411081", "411421", "420607", "420800", "420900", "430102", "430122", "430225", "430301", "430401", "430511", "430624", "430922", "431027", "431127", "431201", "440306", "440703", "440923", "441400", "441821", "441827", "441882", "445321", "450100", "450224", "450521", "450701", "450923", "450981", "451022", "451029", "451421", "451424", "460200", "500232", "500237", "510106", "510112", "510183", "510503", "510601", "510683", "510903", "511524", "511602", "511823", "513224", "513229", "513328", "520300", "520326", "522422", "522633", "522700", "530103", "530501", "530702", "532600", "532622", "533324", "542100", "542125", "542227", "542322", "542331", "542421", "542424", "542525", "542626", "610301", "610429", "610528", "610702", "610901", "610926", "620524", "620901", "621124", "621201", "621226", "623026", "632126", "632523", "632821", "652300", "652901", "653000", "653022", "653121", "653123", "653128", "653200", "654021"};
     /** 常用邮箱后缀 */
-    private static final String[] EMAIL_SUFFIX = {"@gmail.com", "@yahoo.com", "@msn.com", "@hotmail.com", "@aol.com", "@ask.com", "@live.com", "@qq.com", "@0355.net", "@163.com", "@163.net", "@263.net", "@3721.net", "@yeah.net", "@googlemail.com", "@126.com", "@sina.com", "@sohu.com", "@yahoo.com.cn"};
+    private static final String EMAIL_SUFFIX = "@gmail.com, @yahoo.com, @msn.com, @hotmail.com, @aol.com, @ask.com, @live.com, @qq.com, @0355.net, @163.com, @163.net, @263.net, @3721.net, @yeah.net, @googlemail.com, @126.com, @sina.com, @sohu.com, @yahoo.com.cn";
     /** IP范围 */
     private static final int[][] IP_RANGE = {{607649792, 608174079}, // 36.56.0.0-36.63.255.255
                 {1038614528, 1039007743}, // 61.232.0.0-61.237.255.255
@@ -50,7 +51,7 @@ public class RandomString {
      * @param len 字符串长度
      * @return
      */
-    public static String get(int len) {
+    public static String getFixed(int len) {
         StringBuilder resBuf = new StringBuilder();
         for (int i = 0; i < len; i++) {
             int randIndex = getRandomNum(SOURCE_STRING.length);
@@ -62,21 +63,22 @@ public class RandomString {
     /**
      * 生成随机指定范围的定长字符串
      * 
-     * @param src 产生随机字符串来源
+     * @param src 产生随机字符串来源，使用英文逗号分开
      * @param len 返回字符串长度
      * @return
      */
-    public static final String getRange(String[] src, int len) {
-        if (src == null || src.length == 0) {
+    public static final String getRange(String src, int len) {
+        if (src == null || src.length() == 0) {
             throw new RuntimeException("来源字符串为空");
         }
         if (len < 1) {
             throw new RuntimeException("返回字符串长度需要大于0");
         }
+        String[] arr = src.split(",");
         StringBuffer buf = new StringBuffer();
         for (int i = 0; i < len; i++) {
-            int index = getRandomNum(src.length);
-            buf.append(src[index]);
+            int index = getRandomNum(arr.length);
+            buf.append(arr[index].trim());
         }
         return buf.toString();
     }
@@ -105,7 +107,7 @@ public class RandomString {
     public static String getMobile() {
         int index = getRandomNum(MOBILE_SEGMENT.length);
         StringBuffer buf = new StringBuffer(MOBILE_SEGMENT[index]);
-        final String[] numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        final String numbers = "0, 1, 2, 3, 4, 5, 6, 7, 8, 9";
         for (int i = 0; i < 8; i++) {
             buf.append(getRange(numbers, 1));
         }
@@ -125,11 +127,18 @@ public class RandomString {
         Date date = new Date(System.currentTimeMillis() - getRandomNum(Integer.MAX_VALUE));
         String day = sdf.format(date);
         // 产生随机后面4位号码
-        final String[] numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        final String[] numberXs = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "X"};
+        final String numbers = "0, 1, 2, 3, 4, 5, 6, 7, 8, 9";
+        final String numberXs = "0, 1, 2, 3, 4, 5, 6, 7, 8, 9, X";
         String last3 = getRange(numbers, 3);
         String last4 = getRange(numberXs, 1);
         return areaCode + day + last3 + last4;
+    }
+
+    /**
+     * 生成uuid
+     **/
+    public static String getUuid() {
+        return UUID.randomUUID().toString().replace("-", "");
     }
 
     /**
@@ -139,7 +148,7 @@ public class RandomString {
     public static String getEmail() {
         // 生成用户名 6-16 位长度
         int len = getRandomNum(10) + 6;
-        String userName = get(len).toLowerCase();
+        String userName = getFixed(len).toLowerCase();
         String email = getRange(EMAIL_SUFFIX, 1);
         return userName + email;
     }
@@ -159,9 +168,9 @@ public class RandomString {
     }
 
     public static void main(String[] args) throws Exception {
-        String str = RandomString.get(6);
+        String str = RandomString.getFixed(6);
         System.out.println("随机普通字符串:" + str);
-        str = RandomString.getRange(new String[]{"999001", "999002", "999003"}, 1);
+        str = RandomString.getRange("999001, 999002, 999003", 1);
         System.out.println("随机指定范围字符串：" + str);
         str = RandomString.getChineseName();
         System.out.println("随机中国姓名：" + str);
