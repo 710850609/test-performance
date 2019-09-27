@@ -1,0 +1,6 @@
+01_测试数据准备/03_Java批量新增/batch-insert/target/*
+01_测试数据准备/03_Java批量新增/batch-insert/.settings/*
+01_测试数据准备/03_Java批量新增/batch-insert/.classpath
+01_测试数据准备/03_Java批量新增/batch-insert/.factorypath
+01_测试数据准备/03_Java批量新增/batch-insert/.project
+.vscode/launch.json
