@@ -6,12 +6,12 @@
 - 2、修改```spring.datasource.url```、```spring.datasource.username```、```spring.datasource.password```参数
 
 ## 二、声明数据库表字段名和对应字段值
-模仿(```core.table.AccountInsert```)[01_测试数据准备\03_Java批量新增\batch-insert\src\main\java\core\table\AccountInsert.java]类，创建一个库表对应的类
+模仿[```core.table.AccountInsert```](01_测试数据准备\03_Java批量新增\batch-insert\src\main\java\core\table\AccountInsert.java)类，创建一个库表对应的类
 
 ## 三、创建批量任务
 - 1、在(```core.task.TaskManager```)[01_测试数据准备\03_Java批量新增\batch-insert\src\main\java\core\task\TaskManager.java]类中增加上一步创建的映射类
 - 2、定义批量新增的记录数
 
 ## 三、执行批量新增
-执行(```core.MainApplication```)[01_测试数据准备\03_Java批量新增\batch-insert\src\main\java\core\MainApplication.java]类
+执行[```core.MainApplication```](01_测试数据准备\03_Java批量新增\batch-insert\src\main\java\core\MainApplication.java)类
 
