@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="测试计划" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath">F:\maven-respository\mysql\mysql-connector-java\5.1.48\mysql-connector-java-5.1.48.jar</stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="线程组" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1000</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="MySQL连接配置" enabled="true">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery">select 1</stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="dataSource">mysql</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://localhost:3306/big_data?characterEncoding=UTF8&amp;allowMultiQueries=true&amp;serverTimezone=UTC</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+          <stringProp name="initQuery"></stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">123456</stringProp>
+          <stringProp name="poolMax">10</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">TRANSACTION_READ_COMMITTED</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">root</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="account表随机字段值" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="3373707">name</stringProp>
+            <stringProp name="111421">pwd</stringProp>
+            <stringProp name="3522646">salt</stringProp>
+            <stringProp name="-1249512767">gender</stringProp>
+            <stringProp name="-1068855134">mobile</stringProp>
+            <stringProp name="-898709972">id_card_no</stringProp>
+            <stringProp name="109757585">state</stringProp>
+            <stringProp name="96619420">email</stringProp>
+            <stringProp name="-493574096">create_time</stringProp>
+            <stringProp name="-573446013">update_time</stringProp>
+            <stringProp name="115792">uid</stringProp>
+            <stringProp name="-139935956">last_login_time</stringProp>
+            <stringProp name="-1685060282">last_login_ip</stringProp>
+            <stringProp name="-1408822014">error_login_count</stringProp>
+            <stringProp name="1642639545">login_count</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="683312158">
+              <stringProp name="570903071">${__RandomChineseName}</stringProp>
+              <stringProp name="845019089">${__RandomString(6,0123456789abcdefghijklmnopgrstuvwxyz,)}</stringProp>
+              <stringProp name="845019089">${__RandomString(6,0123456789abcdefghijklmnopgrstuvwxyz,)}</stringProp>
+              <stringProp name="-1349385785">${__RandomString(1,012,)}</stringProp>
+              <stringProp name="-893638623">${__RandomMobile}</stringProp>
+              <stringProp name="-815825257">${__RandomIdCardNo}</stringProp>
+              <stringProp name="-320629017">${__RandomString(1,01,)}</stringProp>
+              <stringProp name="155904923">${__RandomEmail}</stringProp>
+              <stringProp name="-1430188023">${__time(yyyy-MM-dd HH:mm:sss,)}</stringProp>
+              <stringProp name="-1430188023">${__time(yyyy-MM-dd HH:mm:sss,)}</stringProp>
+              <stringProp name="68359384">${__BeanShell(&quot;${__UUID}&quot;.replace(&quot;-&quot;\, &quot;&quot;),)}</stringProp>
+              <stringProp name="-1430188023">${__time(yyyy-MM-dd HH:mm:sss,)}</stringProp>
+              <stringProp name="1795500892">${__RandomIP}</stringProp>
+              <stringProp name="-1226715177">${__Random(0,3,)}</stringProp>
+              <stringProp name="923614681">${__Random(0,3000,)}</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">true</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="新增account记录" enabled="true">
+          <stringProp name="dataSource">mysql</stringProp>
+          <stringProp name="query">insert into account 
+(id, name, pwd, salt, gender, mobile, state, email, id_card_no, create_time, update_time, uid, last_login_time, last_login_ip, error_login_count, login_count) values 
+(null, &apos;${name}&apos;, &apos;${pwd}&apos;, &apos;${salt}&apos;, ${gender}, &apos;${mobile}&apos;, ${state}, &apos;${email}&apos;, &apos;${id_card_no}&apos;, &apos;${create_time}&apos;, &apos;${update_time}&apos;, &apos;${uid}&apos;, &apos;${last_login_time}&apos;, &apos;${last_login_ip}&apos;, ${error_login_count}, ${login_count});</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Update Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultVariable"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+        </JDBCSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
