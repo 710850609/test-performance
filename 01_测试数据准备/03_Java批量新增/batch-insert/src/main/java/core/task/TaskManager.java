@@ -18,6 +18,6 @@ public class TaskManager {
 
     @PostConstruct
     public void start() throws Exception {
-        accountInsert.insert(100000);
+        accountInsert.insert(10000);
     }
 }

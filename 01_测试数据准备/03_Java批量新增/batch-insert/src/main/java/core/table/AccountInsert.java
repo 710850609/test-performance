@@ -46,7 +46,4 @@ public class AccountInsert extends AbstractInsert {
         );
     }
 
-    public static void main(String[] args) throws Exception {
-        new AccountInsert().insert(1);
-    }
 }
