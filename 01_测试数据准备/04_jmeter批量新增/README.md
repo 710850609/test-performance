@@ -1,11 +1,11 @@
 # Jmeter数据库批量新增
-<code>
+
 这里使用Jmeter5.1.1版本，需要对Jmeter会继续基础操作。
 
 如果需要进行体验，导入 [jmx文件](01_测试数据准备/04_jmeter批量新增/JDBC-Request.jmx) 到Jmeter中。
 
 使用到的 [mysql-connector-java-5.1.48.jar](01_测试数据准备/04_jmeter批量新增/mysql-connector-java-5.1.48.jar)、[jmeter-function-plugins](01_测试数据准备/04_jmeter批量新增/jmeter-function-plugins-1.0-SNAPSHOT.jar)。
-</code>
+
 
 ## 一、适用情况
 - 1、直接对数据表进行重复性操作
