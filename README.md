@@ -26,7 +26,7 @@
 [01_批量新增存储过程.sql](01_测试数据准备/02_数据库批量新增/01_批量新增存储过程.sql)
 
 #### 1.3、编写程序方式新增
-[batch-insert](01_测试数据准备\03_Java批量新增\batch-insert\README.md)
+[batch-insert](01_测试数据准备/03_Java批量新增/batch-insert/README.md)
 
 #### 1.4、Jmeter工具批量操作
-[Jmeter批量新增](01_测试数据准备\04_jmeter批量新增\README.md)
+[Jmeter批量新增](01_测试数据准备/04_jmeter批量新增/README.md)
