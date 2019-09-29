@@ -56,9 +56,8 @@
 | __time | ```${__time(yyyy-MM-dd HH:mm:sss,)}``` | 按指定时间格式，生成随机时间字符串 |
 | __UUID |  ```${__UUID}``` | 生成UUID，包含“-” |
 | __Random | ```${__Random(10,99,)}``` | 生成10到99的范围的一个数字，包含10和99 |
-| ${__RandomChineseName} | ```${__RandomChineseName}```| 生成随机中国姓名(非内置函数) |
+| __RandomChineseName | ```${__RandomChineseName}```| 生成随机中国姓名(非内置函数) |
 | __RandomMobile | ```${__RandomMobile}```| 生成随机手机号码(非内置函数) |
-| ${__RandomChineseName} | ```${__RandomChineseName}```| 生成随机中国姓名(非内置函数) |
 | __RandomIdCardNo | ```${__RandomIdCardNo}```| 生成随机身份证件号(非内置函数) |
 | __RandomEmail | ```${__RandomEmail}```| 生成随机电子邮箱(非内置函数) |
 | __RandomIP | ```${__RandomIP}```| 生成随机IPv4地址(非内置函数) |
