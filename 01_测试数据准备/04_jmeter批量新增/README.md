@@ -1,5 +1,12 @@
 # Jmeter数据库批量新增
-<pre>这里使用Jmeter5.1.1版本，需要对Jmeter会继续基础操作</pre>
+<code>
+这里使用Jmeter5.1.1版本，需要对Jmeter会继续基础操作。
+
+如果需要进行体验，导入 [jmx文件](01_测试数据准备/04_jmeter批量新增/JDBC-Request.jmx) 到Jmeter中。
+
+使用到的 [mysql-connector-java-5.1.48.jar](01_测试数据准备/04_jmeter批量新增/mysql-connector-java-5.1.48.jar)、[jmeter-function-plugins](01_测试数据准备/04_jmeter批量新增/jmeter-function-plugins-1.0-SNAPSHOT.jar)。
+</code>
+
 ## 一、适用情况
 - 1、直接对数据表进行重复性操作
 - 2、数据有严格的创建函数或存储过程限制，不能通过编写数据库存储过程实现
@@ -8,6 +15,7 @@
 ## 二、Jmeter数据库操作计划
 ### 1、创建线程组
 ![创建线程组](https://upload.cc/i1/2019/09/29/MWuo7z.png)
+![导入数据库驱动jar](https://upload.cc/i1/2019/09/29/6Efs2x.png)
 
 ### 2、创建JDBC连接配置
 - 1、创建JDBC连接配置
@@ -37,7 +45,7 @@
 
 <code>Jmeter函数助手目的是为了快速写出正确的Jmeter函数表达式</code>
 
-<code>这里使用到自定义Jmeter函数，需要复制 [jar](01_测试数据准备\04_jmeter批量新增\jmeter-function-plugins-1.0-SNAPSHOT.jar) 到 %JMETER_HOME%/lib/ext下，并重启Jmeter</code>
+<code>这里使用到自定义Jmeter函数，需要复制 [jmeter-function-plugins-1.0-SNAPSHOT.jar](01_测试数据准备/04_jmeter批量新增/jmeter-function-plugins-1.0-SNAPSHOT.jar) 到 %JMETER_HOME%/lib/ext下，并重启Jmeter</code>
 
 
 - 1、Jmeter函数助手入口
