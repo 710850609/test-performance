@@ -100,7 +100,6 @@ ab [选项/参数] [URL地址]
 | -u | PUT请求发送的请求数据,需要和-T参数一起配合使用 |
 | -m | 自定义HTTP请求方法,如DELETE/HEAD |
 | -H | 添加自定义请求头参数,使用冒号分离请求头的key和value,格式如:<p>-H "Accept-Encoding: zip/zop;8bit"</p> |
-|  |  |
 
 ### 3、使用例子
 
