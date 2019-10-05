@@ -49,7 +49,7 @@ public class SubassemblyManager {
     private static void loadMethods(String methodStr) throws Exception {
         int index = methodStr.lastIndexOf(".");
         Class<?> clazz = Class.forName(methodStr.substring(0, index));
-        Object obj = clazz.newInstance();
+        Object obj = clazz.getDeclaredConstructor().newInstance();
         Method[] allDeclaredMethods = ReflectionUtils.getAllDeclaredMethods(clazz);
         Method method = null;
         for (Method declaredMethod : allDeclaredMethods) {
