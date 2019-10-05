@@ -8,19 +8,27 @@ delimiter $$
 CREATE PROCEDURE proc_insert_account_batch(in batch_num int(12))
 BEGIN
 	DECLARE tmp_sql LONGTEXT;
-    SET @tmp_batch = 3000;
+    -- 设置批次提交的记录数，批次提交能减少与数据库的交互，提高性能
+    SET @tmp_batch = 3000;  
+    -- 定义批次执行SQL语言的前面相同部分，可以复用
     SET @tmp_base_sql = 'insert into account(`id`, `name`, pwd, salt, gender, mobile, `state`, email, create_time, update_time, `uid`, last_login_time,last_login_ip,login_count) values ';
+    -- 定义批次执行的SQL
     SET @tmp_sql = @tmp_base_sql;
     SET @tmp_index = 0;
+    -- 设置事务自动提交
     SET autocommit = 1;
     SET @i = 0;
+    -- 循环生成批次SQL的字段取值
     while @i < batch_num do
         SET @tmp_sql = concat(@tmp_sql, '(NULL,\'', rand_chinese_name(), '\',\'', rand_str(8), '\',\'', rand_str(6), '\',', rand_dict('0,1,2'), ',\'', rand_mobile(), '\',\'', rand_dict('0,1'),'\',\'', concat(rand_str(6), '@qq.com'), '\',\'', rand_date('2010-01-01 00:00:00', now()), '\',NULL,replace(uuid(), \'-\', \'\'),NULL,\'', rand_ip(), '\',', rand_range_num(0,1000), '),');
         SET @i = @i + 1;
         IF mod(@i, @tmp_batch) = 0 THEN
             SET @tmp_sql = LEFT(@tmp_sql, CHAR_LENGTH(@tmp_sql) - 1);
+            -- 编译SQL
             prepare stmt from @tmp_sql;
+            -- 执行SQL
             execute stmt;
+            -- 生成下一个批次SQL
             SET @tmp_sql = @tmp_base_sql;
         END IF;
     END while;

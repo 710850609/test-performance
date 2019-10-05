@@ -14,7 +14,6 @@
 [01_批量新增存储过程.sql](01_测试数据准备/02_数据库批量新增/01_批量新增存储过程.sql)
 
 ### 3、[Java批量新增](01_测试数据准备/03_Java批量新增/batch-insert/README.md)
-[batch-insert](01_测试数据准备/03_Java批量新增/batch-insert/README.md)
 
 ### 4、[Jmeter工具批量新增](01_测试数据准备/04_jmeter批量新增/README.md)
 
