@@ -97,6 +97,8 @@ ab [选项/参数] [URL地址]
 | -n | 总请求数量 |
 | -T | 设置POST/PUT请求方式的Content-type请求头参数,如:<p>-T "application/x-www-form-urlencoded"</p> |
 | -p | POST请求发送的请求数据,需要和-T参数一起配合使用 |
+| -u | PUT请求发送的请求数据,需要和-T参数一起配合使用 |
+| -m | 自定义HTTP请求方法,如DELETE/HEAD |
 | -H | 添加自定义请求头参数,使用冒号分离请求头的key和value,格式如:<p>-H "Accept-Encoding: zip/zop;8bit"</p> |
 |  |  |
 
@@ -105,11 +107,11 @@ ab [选项/参数] [URL地址]
 可以使用网上一些开发的服务.这里使用到一个[Java Web](https://github.com/710850609/api-demo)服务，只需要本地安装JDK8或JDK8以上版本，即可直接运行.
 
 这里已经打包好程序,只要命令窗口切换到 
-[api-demo-v1.0.jar](02_性能测试/01_ApacheBench/api-demo-v1.0.jar) 所在目录,执行命令``` java -jar api-demo-v1.0.jar --server.port=80 ```,80表示使用80端口启动,如果80端口被占用,需要修改成其他端口,相应下面的请求端口也要跟着修改.
+[api-demo-v1.0.jar](api-demo-v1.0.jar) 所在目录,执行命令``` java -jar api-demo-v1.0.jar --server.port=80 ```,80表示使用80端口启动,如果80端口被占用,需要修改成其他端口,相应下面的请求端口也要跟着修改.
 
 #### 3.1、GET请求
 ![模拟请求](https://upload.cc/i1/2019/10/05/me4sPi.png)
-模拟发起HTTP GET请求,并发10个,总共1000个请求,请求地址: ab -n 1000 -c 10 http://10.10.67.16:80/users
+模拟发起HTTP GET请求,并发10个,总共1000个请求,地址: http://10.10.67.16:80/users
 
 ##### 3.1.1、执行命令
 ```bash
@@ -185,7 +187,7 @@ ab命令发起post请求，需要将参数放置到外部文件，用 -p 选项�
 [key1]=[value1]&[key2]=[value2]&[key3]=[value3]
 
 这里模拟post请求,新增用户
-数据保存到[ab-addUser.txt](02_性能测试/01_ApacheBench/ab-addUser.txt)
+数据保存到[ab-addUser.txt](ab-addUser.txt)
 
 ##### 3.2.2、执行命令
 ```bash
@@ -246,7 +248,7 @@ Percentage of the requests served within a certain time (ms)
 ![模拟请求](https://upload.cc/i1/2019/10/05/2h5DoM.png)
 
 ##### 3.3.1、构造请求参数
-跟POST请求差不多，需要进行请求参数准备，这里数据保存到[ab-updateUser.txt](02_性能测试/01_ApacheBench/ab-updateUser.txt)
+跟POST请求差不多，需要进行请求参数准备，这里数据保存到[ab-updateUser.txt](ab-updateUser.txt)
 
 ##### 3.3.2、执行命令
 
