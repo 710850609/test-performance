@@ -3,7 +3,7 @@
 -- 使用例子： select rand_range_num(1000, 9999); -- 输出 1541
 
 delimiter $$
-CREATE FUNCTION rand_range_num(min int, max int) RETURNS INT
+CREATE FUNCTION rand_range_num(min int, max int) RETURNS INT  NO SQL
 BEGIN
     DECLARE return_num int DEFAULT 0;
 

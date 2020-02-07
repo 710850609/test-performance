@@ -3,7 +3,7 @@
 -- 使用例子： select rand_date(STR_TO_DATE('2018-05-21 23:59:59', '%Y-%m-%d %H:%i:%s'), now());  -- 输出 2019-07-13 16:22:44
 
 delimiter $$
-create function rand_date(start_time TIMESTAMP, end_time TIMESTAMP) RETURNS TIMESTAMP
+create function rand_date(start_time TIMESTAMP, end_time TIMESTAMP) RETURNS TIMESTAMP  NO SQL
 BEGIN
     DECLARE tmp_year INT(4) DEFAULT 1970;
     DECLARE tmp_month VARCHAR(2) DEFAULT '01';

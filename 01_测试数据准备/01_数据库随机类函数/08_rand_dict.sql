@@ -5,7 +5,7 @@
 -- 使用例子： select rand_dict('999001, 999002, 999003, 999004, 999005'); -- 输出 999003
 
 delimiter $$
-CREATE FUNCTION rand_dict(src VARCHAR(2048)) RETURNS VARCHAR(128) CHARSET utf8
+CREATE FUNCTION rand_dict(src VARCHAR(2048)) RETURNS VARCHAR(128) CHARSET utf8  NO SQL
 BEGIN
     -- 计算字典的个数
     SET @tmp_dict_size = char_length(src) - char_length(replace(src, ',', '')) + 1;

@@ -3,7 +3,7 @@
 -- 使用例子： select rand_mobile(); -- 输出 17680812643
 
 delimiter $$
-CREATE FUNCTION rand_mobile() RETURNS char(11) CHARSET utf8
+CREATE FUNCTION rand_mobile() RETURNS char(11) CHARSET utf8  NO SQL
 BEGIN
     DECLARE tmp_head VARCHAR(100) DEFAULT '158,156,136,176';
     DECLARE tmp_content CHAR(10) DEFAULT '0123456789';

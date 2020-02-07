@@ -3,7 +3,7 @@
 -- 使用例子： select rand_str(5); -- 输出 Mal23W
 
 delimiter $$
-create function rand_str(num int) returns varchar(255) charset 'utf8'
+create function rand_str(num int) returns varchar(255) charset 'utf8' NO SQL 
 begin
     DECLARE chars_str varchar(62) default 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     DECLARE return_str varchar(255) DEFAULT '';

@@ -3,7 +3,7 @@
 -- 使用例子：select rand_fixed_num(6); -- 输出 401605
 
 delimiter $$
-create function rand_fixed_num(num int) returns int
+create function rand_fixed_num(num int) returns int  NO SQL
 begin
     DECLARE i INT DEFAULT 0;
     DECLARE return_num INT DEFAULT 0;

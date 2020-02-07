@@ -3,7 +3,7 @@
 -- 使用例子： select rand_ip(); -- 输出 151.195.16.184
 
 delimiter $$
-CREATE FUNCTION rand_ip() RETURNS VARCHAR(15) CHARSET utf8
+CREATE FUNCTION rand_ip() RETURNS VARCHAR(15) CHARSET utf8 NO SQL
 BEGIN
     -- 生成第一网段
     SET @tmp_ip_1 = rand_range_num(127, 254);
