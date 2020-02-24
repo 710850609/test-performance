@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>生成指定大小Text文件</title>
+    <script type="application/javascript">
+        // 写进度(百分比)
+        function writeProcess (process) {
+            document.getElementById("process").innerText = process + '%'
+        }
+
+        // 生成指定大小字符串，单位：MB
+        function createStr(size) {
+            writeProcess(0)
+            const c = '*'
+            // 生成1kb
+            var oneKB = ''
+            while (oneKB.length < 1024) {
+                oneKB += c
+            }
+
+            var temp = ''
+            var process = 0
+            var nextProcess = 0
+            while (temp.length < size * 1024) {
+                temp += oneKB;
+                nextProcess = Number(temp.length/1024/size*100).toFixed()
+                // if (nextProcess > process) {
+                    process = nextProcess
+                //     console.log(process + '%')
+                //     writeProcess(process)
+                // }
+
+            }
+            return temp
+        }
+
+        // 生成txt
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // 生成指定大小文件
+        // size： 指定文件大小，单位：MB
+        function create() {
+            var createBtn = document.getElementById("createBtn")
+            createBtn.disabled = true
+            var size = document.getElementById("size").value
+            download(size + 'MB.txt', createStr(size))
+            createBtn.disabled = false
+        }
+    </script>
+</head>
+<body class="center">
+    <div>
+        <p>生成指定大小TXT文件</p>
+    </div>
+    <div>
+        <label>生成文件大小：</label>
+        <input id="size" value="">
+        <label>MB</label>
+    </div>
+    <div>
+        <button id="createBtn" onclick="create()">生成</button>
+        <label id="process"></label>
+    </div>
+</body>
+<style type="text/css">
+    .center {
+        align-content: center;
+    }
+</style>
+</html>
