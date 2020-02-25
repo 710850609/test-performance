@@ -21,17 +21,19 @@
 
             var temp = ''
             var process = 0
-            var nextProcess = 0
-            while (temp.length < size * 1024) {
+            const total = size * 1024 *1024
+            var lastTime = new Date().getMilliseconds()
+            var curTime = 0
+            while (temp.length < total) {
                 temp += oneKB;
-                nextProcess = Number(temp.length/1024/size*100).toFixed()
-                // if (nextProcess > process) {
-                    process = nextProcess
-                //     console.log(process + '%')
-                //     writeProcess(process)
-                // }
-
+                curTime = new Date().getMilliseconds()
+                if (curTime - lastTime > 500) {
+                    process = Number(temp.length/1024/1024/size*100).toFixed()
+                    writeProcess(process)
+                    lastTime = curTime
+                }
             }
+            writeProcess(100)
             return temp
         }
 
