@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>生成图片</title>
+</head>
+<script type="application/javascript">
+    // 生成图片
+    function createImg(width, height) {
+        var canvas = document.createElement('canvas')
+        canvas.width = width
+        canvas.height = height
+        var content = canvas.getContext("2d")
+        content.fillStyle = 'blue'
+        content.fillRect(0, 0, canvas.width, canvas.height)
+        console.log(content)
+        saveImg(canvas.toDataURL(), 'a.png')
+    }
+
+    // 保存图片
+    function saveImg (img, name) {
+        var a = document.createElement('a')
+        a.href = img
+        a.download = name
+        a.click()
+        a.remove()
+    }
+
+    function createFixedWidthHeightImg () {
+        var height = document.getElementById("height").value
+        var width = document.getElementById("width").value
+        createImg(width, height)
+    }
+
+    // 生成指定体积图片
+    function createFixedSizeImg () {
+        // 从选择文件作为初始化制作的图片
+        var file = document.getElementById('fixed-size-file')
+        var initName = file.files[0].name
+        var initSize = file.files[0].size
+        // 计算目标大小的缺失大小，并生成对应大小txt
+        var fixedSize = document.getElementById('fixed-size').value
+        var total = fixedSize * 1024 * 1024 - initSize
+
+        var temp = ''
+        while (temp.length < total) {
+            temp += '*';
+        }
+        var txtName = new Date().getTime() + '.txt'
+        downloadText(txtName, temp)
+        var cmd = `copy /b ${initName} + ${txtName} new.jpg`
+
+        var cmdLabel = document.getElementById('createFixedSizeImgCmd')
+        cmdLabel.innerHTML = '执行cmd命令: ' + cmd
+    }
+
+    // 生成txt
+    function downloadText(filename, text) {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+</script>
+<body>
+    <div class="">
+        <h3>生成指定尺寸图片</h3>
+        <div class="">
+            <div>
+                <label>宽： </label><input id="width" type="text">
+            </div>
+            <div>
+                <label>高： </label><input id="height" type="text">
+            </div>
+            <div>
+                <button onclick="createFixedWidthHeightImg()">生成</button>
+            </div>
+        </div>
+        <hr/>
+        <h3>生成指定体积图片</h3>
+        <div>
+            <div>
+                <label>原始图片: </label><input type="file" id="fixed-size-file">
+            </div>
+            <div>
+                <label>大小: </label><input type="text" id="fixed-size"> MB
+            <div>
+                <button onclick="createFixedSizeImg()">生成</button>
+                <label id="createFixedSizeImgCmd"></label>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

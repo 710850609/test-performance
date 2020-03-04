@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>生成图片</title>
+</head>
+<script type="application/javascript">
+    // 生成图片
+    function createImg() {
+        var height = document.getElementById("height").value
+        var width = document.getElementById("width").value
+        var canvas = document.createElement('canvas')
+        canvas.width = width
+        canvas.height = height
+        var content = canvas.getContext("2d")
+        content.fillStyle = 'blue'
+        content.fillRect(0, 0, canvas.width, canvas.height)
+        console.log(content)
+        // console.log(canvas.toBlob(function (blob) {
+        //     console.log(blob.size)
+        // }))
+        saveImg(canvas.toDataURL(), 'a.png')
+    }
+
+    // 保存图片
+    function saveImg (img, name) {
+        var a = document.createElement('a')
+        a.href = img
+        a.download = name
+        a.click()
+        a.remove()
+    }
+</script>
+<body>
+    <div class="">
+        <h3>生成图片</h3>
+        <div class="">
+            <div>
+                <label>宽： </label><input id="width">
+            </div>
+            <div>
+                <label>高： </label><input id="height">
+            </div>
+            <div>
+                <button onclick="createImg()">生成</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
