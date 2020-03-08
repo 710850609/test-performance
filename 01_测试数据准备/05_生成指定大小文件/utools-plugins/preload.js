@@ -6,7 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const os = require('os');
 const child_process = require('child_process')
-// const uuid = require('node-uuid')
+const { shell } = require('electron')
 
 
 window.readConfig = function () {
@@ -44,6 +44,7 @@ window.createFixedFile = function (fileName, size) {
     child_process.execSync(cmd)
     this.console.log('合并 ' + cmd)
     deleteFile(tmpFile)
+    shell.showItemInFolder(targetFile)
     return targetFile
 }
 
