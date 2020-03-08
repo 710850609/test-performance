@@ -1,0 +1,18 @@
+{
+	"pluginName": "定制文件",
+	"description": "生成定制文件",
+	"author": "bob",
+	"homepage": "https://github.com/710850609/test-performance",
+	"platform": ["win32"],
+	"main": "index.html",
+    "preload":"preload.js",
+    "logo": "logo.png",
+	"version": "0.0.1",
+	"features": [
+	    {
+			"code": "newfile",
+			"explain": "生成定制文件",
+	        "cmds":["文件", "file", "new"]
+	    }
+	]
+}
