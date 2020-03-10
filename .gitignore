@@ -8,3 +8,4 @@
 01_测试数据准备/03_Java批量新增/batch-insert/bin/*
 .vscode/launch.json
 .vscode/settings.json
+.idea/*
