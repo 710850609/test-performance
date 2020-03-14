@@ -7,7 +7,7 @@
 	"main": "index.html",
     "preload":"preload.js",
     "logo": "logo.png",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"features": [
 	    {
 			"code": "newfile",
