@@ -82,7 +82,7 @@
         var initSize = file.files[0].size
         // 计算目标大小的缺失大小，并生成对应大小txt
         var fixedSize = document.getElementById('fixed-size').value
-        var total = fixedSize * 1024 * 1024 - initSize
+        var total = parseInt(fixedSize * 1024 * 1024 - initSize);
         if (total <= 0) {
             alert('目标图片比原始图片小，无法生成')
         }
