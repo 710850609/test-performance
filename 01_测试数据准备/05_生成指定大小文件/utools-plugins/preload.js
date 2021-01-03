@@ -6,6 +6,7 @@ const fs = require('fs')
 const path = require('path')
 const os = require('os');
 const child_process = require('child_process')
+<<<<<<< HEAD
 const { shell } = require('electron')
 
 
@@ -14,18 +15,10 @@ window.readConfig = function () {
     return data
 }	
 
+=======
+>>>>>>> 4ac3461c67063aa7499c5b8808cf54be12699a88
 
 // index.html 后加载的内容可以使用window.readConfig()方法，但不能使用Node.js特性
-// console.log(window.readConfig()) // 正常执行
-// console.log(readFileSync('./config.json')) // 报错
-
-
-// 生成指定大小文件
-// fsutil file createnew D:\test.txt 1024  
-
-// 删除文件
-// del /q D:\test.txt
-
 
 /**
  * 生成指定大小的文件
@@ -44,7 +37,12 @@ window.createFixedFile = function (fileName, size) {
     child_process.execSync(cmd)
     this.console.log('合并 ' + cmd)
     deleteFile(tmpFile)
+<<<<<<< HEAD
     shell.showItemInFolder(targetFile)
+=======
+    // child_process.exec(`explorer.exe /select,"${targetFile}"`)
+    utools.copyFile(targetFile)
+>>>>>>> 4ac3461c67063aa7499c5b8808cf54be12699a88
     return targetFile
 }
 

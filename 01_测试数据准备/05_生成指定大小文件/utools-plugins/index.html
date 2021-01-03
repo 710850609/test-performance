@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>生成图片</title>
+	<!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    
+    <!-- <link type="text/css" src="fileinput.scss" />
+    <script type="text/javascript" src="fileinput.min.js"></script> -->
+
+	<link rel="stylesheet" href="bootstrap.min.css" />
+    <script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
     <style>
         * {
             font-family: consolas;
@@ -18,6 +28,18 @@
             font-size: small;
             color: gray;
         }
+        a:link {
+            text-decoration:none;   /* 指正常的未被访问过的链接*/
+        }
+        a:visited {
+            text-decoration:none; /*指已经访问过的链接*/
+        }
+        a:hover {
+            text-decoration:none;/*指鼠标在链接*/
+        }
+        a:active {
+            text-decoration:none;/* 指正在点的链接*/ 
+        }
     </style>
 </head>
 <script type="application/javascript">
@@ -27,7 +49,7 @@
         canvas.width = width
         canvas.height = height
         var content = canvas.getContext("2d")
-        content.fillStyle = 'blue'
+        content.fillStyle = '#3F85ED'
         content.fillRect(0, 0, canvas.width, canvas.height)
         console.log(content)
         saveImg(canvas.toDataURL(), 'a.png')
@@ -60,14 +82,15 @@
         var initSize = file.files[0].size
         // 计算目标大小的缺失大小，并生成对应大小txt
         var fixedSize = document.getElementById('fixed-size').value
-        var total = fixedSize * 1024 * 1024 - initSize
+        var total = parseInt(fixedSize * 1024 * 1024 - initSize);
         if (total <= 0) {
             alert('目标图片比原始图片小，无法生成')
         }
         
         var targetFile = window.createFixedFile(file.files[0].path, total)
-        document.getElementById('createFixedSizeImgCmd').innerHTML = targetFile
+        document.getElementById('createFixedSizeImgCmd').innerHTML = `<a>${targetFile}</a>已复制到剪贴板`
         console.log(targetFile)
+        utools.showNotification('已复制到剪贴板', clickFeatureCode = null, silent = true)
     }
 
     // 生成txt
@@ -80,9 +103,90 @@
         element.click();
         document.body.removeChild(element);
     }
+
+    function selectFile () {
+        $('input[id=fixed-size-file]').val('')
+        $('input[id=fixed-size-file]').click();
+        utools.showMainWindow();
+    }
+    function changFile() {
+        // console.log($(this).val());
+        // $('input[id=fixed-size-file-show]').val($(this).val());
+        console.log($('input[id=fixed-size-file]'))
+        var name = document.getElementById('fixed-size-file').files[0].name
+        $('input[id=fixed-size-file-show]').val(name);
+        utools.showMainWindow();
+    }
 </script>
 <body>
-    <div class="">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" 
+                       href="#collapseOne">
+                       <span class="title">生成指定尺寸图片</span>
+                       <span class="sub-title">生成蓝色PNG图片</span>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">宽：</span>
+                        <input type="text" class="form-control" placeholder="请输入宽度" aria-describedby="basic-addon1" id="width">
+                        <span class="input-group-addon">像素</span>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">高：</span>
+                        <input type="text" class="form-control" placeholder="请输入高度" aria-describedby="basic-addon1" id="height">
+                        <span class="input-group-addon">像素</span>
+                    </div>
+                    <!-- <label>宽： </label><input id="width" type="text"> -->
+                    <!-- <label>高： </label><input id="height" type="text"> -->
+                </div>
+                <div>
+                    <button onclick="createFixedWidthHeightImg()" type="button" class="btn btn-primary">生成</button>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" 
+                       href="#collapseTwo">
+                        <span class="title">生成指定体积图片</span>
+                        <span class="sub-title">向原始图片追加文件，生成一个指定大小的图片</span>
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">大小：</span>
+                        <input type="text" class="form-control" placeholder="请输入目标文件大小" aria-describedby="basic-addon1" id="fixed-size">
+                        <span class="input-group-addon">MB</span>
+                    </div>                         
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">原始图片：</span>
+                        <input type="text" class="form-control" placeholder="请选择" aria-describedby="basic-addon1" id="fixed-size-file-show" onclick="selectFile()">
+                        <input type="file" placeholder="请输入宽度" aria-describedby="basic-addon1" id="fixed-size-file" style="display: none;" onchange="changFile(this)">
+                    </div>
+                    <!-- <label>原始图片: </label><input type="file" id="fixed-size-file"> -->
+                    <!-- <label>大小: </label><input type="text" id="fixed-size"> MB -->
+                    <div>
+                        <button onclick="createFixedSizeImg()" type="button" class="btn btn-primary">生成</button>
+                        <label id="createFixedSizeImgCmd"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- <div class="">
         <div class="opt">
             <div>
                 <span class="title">生成指定尺寸图片</span>
@@ -112,6 +216,6 @@
             </div>
         </div>
         <hr/>
-    </div>
+    </div> -->
 </body>
 </html>
