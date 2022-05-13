@@ -8,7 +8,7 @@ public class TestDemo {
     @BeforeTest
     public void before(ITestContext ctx) {
         ctx.setAttribute("name", "bob");
-        Assert.assertTrue(false, "失败1111");
+//        Assert.assertTrue(false, "失败1111");
     }
 
     @Test
