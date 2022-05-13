@@ -13,6 +13,6 @@ public class RefundService {
 
     public boolean check(String refundNo) {
         HttpUtil.post("/checkRefund", null);
-        return true;
+        return false;
     }
 }

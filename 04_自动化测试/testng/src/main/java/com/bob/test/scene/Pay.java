@@ -52,7 +52,7 @@ public class Pay extends AbstractTestNGSpringContextTests {
     @Test(description = "查询支付结果", priority = 4)
     public void query() {
         String payOrderNo = TestNg.attributes().get("payOrderNo", String.class);
-        int result = payService.query(payOrderNo);
+        boolean result = payService.query(payOrderNo);
         log.info("【{}】订单支付结果：{}", payOrderNo, result);
     }
 }

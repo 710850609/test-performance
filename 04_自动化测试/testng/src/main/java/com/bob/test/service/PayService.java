@@ -25,8 +25,8 @@ public class PayService {
         HttpUtil.post("/pay", Maps.newHashMap());
     }
 
-    public int query(String payOrderNo) {
+    public boolean query(String payOrderNo) {
         HttpUtil.post("/query", null);
-        return 1;
+        return true;
     }
 }
