@@ -7,19 +7,30 @@ import org.slf4j.helpers.MessageFormatter;
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.cglib.proxy.Proxy;
 import org.testng.Reporter;
+import org.testng.collections.Maps;
+import org.testng.collections.Sets;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
 
 public class TestNgLoggerFactory {
 
+    private static Map<String, String> supportReportMethods = Maps.newHashMap();
+    static {
+        supportReportMethods.put("info", "isInfoEnabled");
+        supportReportMethods.put("warn", "isWarnEnabled");
+        supportReportMethods.put("error", "isErrorEnabled");
+    }
+
     public static Logger getLogger(String name) {
         ILoggerFactory iLoggerFactory = LoggerFactory.getILoggerFactory();
-        return iLoggerFactory.getLogger(name);
+        Logger logger = iLoggerFactory.getLogger(name);
+        return proxyLogger(logger);
     }
     public static Logger getLogger(Class<?> clazz) {
-        Logger logger = getLogger(clazz.getName());
-        return proxyLogger(logger);
+        return getLogger(clazz.getName());
     }
 
     private static Logger proxyLogger(Logger logger) {
@@ -27,15 +38,15 @@ public class TestNgLoggerFactory {
                 new InvocationHandler() {
                     @Override
                     public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-                        if ("info".equals(method.getName())) {
+                        String checkMethodName = supportReportMethods.get(method.getName());
+                        Method checkMethod = logger.getClass().getMethod(checkMethodName, null);
+                        boolean isEnabled = (boolean) checkMethod.invoke(logger, null);
+                        if (supportReportMethods.keySet().contains(method.getName()) && isEnabled) {
                             Object[] params = Arrays.stream(objects).skip(1).filter(e -> e.getClass().isAssignableFrom(String.class)).toArray();
                             String message = MessageFormatter.arrayFormat((String) objects[0], params).getMessage();
-
-                            System.out.println("输出报告： " + message);
                             Reporter.log(message);
                         }
-                        return null;
-//                        return method.invoke(logger, objects);
+                        return method.invoke(logger, objects);
                     }
                 });
     }
