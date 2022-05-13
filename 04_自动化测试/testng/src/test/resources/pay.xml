@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="支付流程测试">
-    <test name="支付成功">
+    <test name="支付">
         <parameter name="emailid" value="tester456@gmail.com"/>
         <parameter name="password" value="test@123"/>
         <classes>
-            <class name="com.bob.test.scene.Pay">
-                <parameter name="name" value="jack">
-                </parameter>
-            </class>
+            <class name="com.bob.test.scene.Pay" />
+            <class name="com.bob.test.scene.Refund"></class>
         </classes>
     </test>
-
-<!--    <test name="支付失败">-->
-<!--        <classes>-->
-<!--            <class name="com.bob.test.scene.pay.PayScene">-->
-<!--                <parameter name="name" value="bob">-->
-<!--                </parameter>-->
-<!--            </class>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <listeners>
+        <listener class-name="com.bob.test.core.report.ExtentTestNGIReporterListener"></listener>
+    </listeners>
 </suite>

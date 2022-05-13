@@ -1,5 +1,6 @@
 package com.bob.test.service;
 
+import com.apifan.common.random.source.NumberSource;
 import com.bob.test.util.HttpUtil;
 import org.springframework.stereotype.Component;
 import org.testng.collections.Maps;
@@ -12,7 +13,7 @@ public class PayService {
 
     public String unifiedOrder(String orderNo, String appType) {
         HttpUtil.post("/unifiedOrder", Maps.newHashMap());
-        return "102-" + System.currentTimeMillis();
+        return "102-" + NumberSource.getInstance().randomInt(1000000, 9999999);
     }
 
     public List<String> initPay(String payOrderNo) {
@@ -24,4 +25,8 @@ public class PayService {
         HttpUtil.post("/pay", Maps.newHashMap());
     }
 
+    public int query(String payOrderNo) {
+        HttpUtil.post("/query", null);
+        return 1;
+    }
 }

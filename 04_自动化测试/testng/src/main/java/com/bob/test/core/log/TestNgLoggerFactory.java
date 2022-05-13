@@ -3,6 +3,7 @@ package com.bob.test.core.log;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
 import org.slf4j.helpers.MessageFormatter;
 import org.springframework.cglib.proxy.InvocationHandler;
 import org.springframework.cglib.proxy.Proxy;
@@ -42,7 +43,9 @@ public class TestNgLoggerFactory {
                         Method checkMethod = logger.getClass().getMethod(checkMethodName, null);
                         boolean isEnabled = (boolean) checkMethod.invoke(logger, null);
                         if (supportReportMethods.keySet().contains(method.getName()) && isEnabled) {
-                            Object[] params = Arrays.stream(objects).skip(1).filter(e -> e.getClass().isAssignableFrom(String.class)).toArray();
+                            Object[] params = Arrays.stream(objects).skip(1).filter(e -> {
+                                return !e.getClass().isAssignableFrom(Marker.class) || !e.getClass().isAssignableFrom(Throwable.class);
+                            }).toArray();
                             String message = MessageFormatter.arrayFormat((String) objects[0], params).getMessage();
                             Reporter.log(message);
                         }

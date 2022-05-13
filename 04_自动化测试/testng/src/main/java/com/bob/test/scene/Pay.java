@@ -1,5 +1,7 @@
 package com.bob.test.scene;
 
+import com.apifan.common.random.source.NumberSource;
+import com.bob.test.core.report.ExtentTestNGIReporterListener;
 import com.bob.test.service.PayService;
 import com.bob.test.util.TestNg;
 import lombok.CustomLog;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.collections.CollectionUtils;
 
@@ -19,16 +22,16 @@ public class Pay extends AbstractTestNGSpringContextTests {
     @Autowired
     private PayService payService;
 
-    @Test(priority = 1)
+    @Test(description = "统一下单", priority = 1)
     public void unifiedOrder() {
-        String orderNo = "101-" + System.currentTimeMillis();
+        String orderNo = "101-" + NumberSource.getInstance().randomInt(1000000, 9999999);
         String payOrderNo = payService.unifiedOrder(orderNo, null);
         log.info("电商订单号【{}}】统一下单，对应支付订单号【{}】", orderNo, payOrderNo);
         Assert.assertNotEquals(payOrderNo, null, "下支付单失败");
         TestNg.attributes().set("payOrderNo", payOrderNo);
     }
 
-    @Test(priority = 2)
+    @Test(description = "获取支付方式", priority = 2)
     public void initPay() {
         String payOrderNo = TestNg.attributes().get("payOrderNo", String.class);
         List<String> payWayList = payService.initPay(payOrderNo);
@@ -36,7 +39,7 @@ public class Pay extends AbstractTestNGSpringContextTests {
         TestNg.attributes().set("payWayList", payWayList);
     }
 
-    @Test(priority = 3)
+    @Test(description = "确认支付", priority = 3)
     public void pay() {
         String payOrderNo = TestNg.attributes().get("payOrderNo", String.class);
         List<String> payWayList = (List<String>) TestNg.attributes().get("payWayList");
@@ -44,5 +47,12 @@ public class Pay extends AbstractTestNGSpringContextTests {
         String payWay = payWayList.get(0);
         payService.pay(payOrderNo, payWay);
         log.info("【{}】订单使用【{}】方式支付", payOrderNo, payWay);
+    }
+
+    @Test(description = "查询支付结果", priority = 4)
+    public void query() {
+        String payOrderNo = TestNg.attributes().get("payOrderNo", String.class);
+        int result = payService.query(payOrderNo);
+        log.info("【{}】订单支付结果：{}", payOrderNo, result);
     }
 }
