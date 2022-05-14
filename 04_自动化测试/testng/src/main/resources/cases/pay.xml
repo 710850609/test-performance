@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="支付流程测试" parallel="classes" thread-count="2">
+<!-- verbose 越大，输出日志越详细 -->
+<suite name="支付流程测试" verbose="0">
     <test name="支付-退款">
         <classes>
             <class name="com.bob.test.cases.Pay" />

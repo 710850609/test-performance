@@ -1,7 +1,9 @@
 package com.bob.test.service;
 
 import com.apifan.common.random.source.NumberSource;
-import com.bob.test.util.HttpUtil;
+import com.bob.test.service.dto.UnifiedOrderReq;
+import com.bob.test.service.dto.UnifiedOrderResp;
+import com.bob.test.util.PayUtil;
 import org.springframework.stereotype.Component;
 import org.testng.collections.Maps;
 
@@ -11,22 +13,27 @@ import java.util.List;
 @Component
 public class PayService {
 
-    public String unifiedOrder(String orderNo, String appType) {
-        HttpUtil.post("/unifiedOrder", Maps.newHashMap());
-        return "102-" + NumberSource.getInstance().randomInt(1000000, 9999999);
+    public UnifiedOrderResp unifiedOrder(UnifiedOrderReq req) {
+        PayUtil.post("/unifiedOrder", Maps.newHashMap());
+        String payOrderNo = "102-" + NumberSource.getInstance().randomInt(1000000, 9999999);
+        return UnifiedOrderResp.builder()
+                .payOrderNo(payOrderNo)
+                .orderNo(req.getOrderNo())
+                .address(req.getAddress())
+                .build();
     }
 
     public List<String> initPay(String payOrderNo) {
-        HttpUtil.post("/initPay", Maps.newHashMap());
+        PayUtil.post("/initPay", Maps.newHashMap());
         return Arrays.asList("微信", "支付宝", "云闪付");
     }
 
     public void pay(String orderNo, String payWay) {
-        HttpUtil.post("/pay", Maps.newHashMap());
+        PayUtil.post("/pay", Maps.newHashMap());
     }
 
     public boolean query(String payOrderNo) {
-        HttpUtil.post("/query", null);
+        PayUtil.post("/query", null);
         return true;
     }
 }

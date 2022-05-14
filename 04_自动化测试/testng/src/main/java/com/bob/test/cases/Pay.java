@@ -1,8 +1,12 @@
 package com.bob.test.cases;
 
+import com.alibaba.fastjson.JSON;
+import com.apifan.common.random.source.AreaSource;
 import com.apifan.common.random.source.NumberSource;
 import com.bob.test.core.TestNg;
 import com.bob.test.service.PayService;
+import com.bob.test.service.dto.UnifiedOrderReq;
+import com.bob.test.service.dto.UnifiedOrderResp;
 import lombok.CustomLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +14,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.collections.CollectionUtils;
+import sun.jvm.hotspot.debugger.windbg.AddressDataSource;
 
 import java.util.List;
 
@@ -26,8 +31,11 @@ public class Pay extends AbstractTestNGSpringContextTests {
     @Test(description = "统一下单", priority = 1)
     public void unifiedOrder() {
         String orderNo = "101-" + NumberSource.getInstance().randomInt(1000000, 9999999);
-        String payOrderNo = payService.unifiedOrder(orderNo, null);
-        log.info("电商订单号【{}}】统一下单，对应支付订单号【{}】", orderNo, payOrderNo);
+        String address = AreaSource.getInstance().randomAddress();
+        UnifiedOrderReq req = new UnifiedOrderReq(orderNo, address);
+        UnifiedOrderResp resp = payService.unifiedOrder(req);
+        log.info("下支付单：{}", JSON.toJSONString(resp));
+        String payOrderNo = resp.getPayOrderNo();
         Assert.assertNotEquals(payOrderNo, null, "下支付单失败");
         TestNg.attributes().set("payOrderNo", payOrderNo);
     }

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-
-    <springProperty scope="context" name="applicationName" source="spring.application.name" defaultValue="" />
-    <springProperty scope="context" name="logPath" source="logging.path" defaultValue="/logs${applicationName}" />
+    <springProperty scope="context" name="logPath" source="logging.path" defaultValue="/logs" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %highlight(%-4level) %magenta(${PID:-}) %white(---) %-10(%yellow([%10.10thread])) %-40(%cyan(%.40logger{20}:%L)) : %msg%n</pattern>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %highlight(%-4level) %magenta(${PID:-}) %white(---) %-10(%yellow([%10.10thread])) %-50(%cyan(%logger{48}:%L)) :%msg%n</pattern>
         </encoder>
     </appender>
 
