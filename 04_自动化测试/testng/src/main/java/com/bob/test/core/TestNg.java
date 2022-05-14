@@ -19,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class TestNg implements ITestListener {
 
-    private static final ThreadLocal<Attributes> ATTRIBUTES_THREAD_LOCAL = new ThreadLocal<>();
+    private static final ThreadLocal<Attributes> ATTRIBUTES_THREAD_LOCAL = new InheritableThreadLocal<>();
     private static EnviromentAttributes enviromentAttributes = new SpringBootEnviromentAttributes();
 
     private static AtomicInteger fetchedVariablesInNonListenerModeCount = new AtomicInteger(0);
