@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
+
+    <springProperty scope="context" name="applicationName" source="spring.application.name" defaultValue="" />
+    <springProperty scope="context" name="logPath" source="logging.path" defaultValue="/logs${applicationName}" />
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
@@ -16,9 +20,9 @@
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level ${PID:-} --- %-20([%20.20thread]) %-55(%.32logger{30}:%L) : %msg%n</pattern>
         </encoder>
-        <param name="File" value="${log4jPath}/log.log" />
+        <param name="File" value="${logPath}/log.log" />
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <param name="FileNamePattern" value="${log4jPath}/info.%d.log" />
+            <param name="FileNamePattern" value="${logPath}/info.%d.log" />
         </rollingPolicy>
     </appender>
 
@@ -29,16 +33,16 @@
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level ${PID:-} --- %-20([%20.20thread]) %-55(%.32logger{30}:%L) : %msg%n</pattern>
         </encoder>
-        <param name="File" value="${log4jPath}/error.log" />
+        <param name="File" value="${logPath}/error.log" />
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <param name="FileNamePattern" value="${log4jPath}/error.%d.log" />
+            <param name="FileNamePattern" value="${logPath}/error.%d.log" />
         </rollingPolicy>
     </appender>
 
     <root level="info">
         <appender-ref ref="STDOUT"/>
-        <!--        <appender-ref ref="FILE_INFO_LOG"/>-->
-        <!--        <appender-ref ref="FILE_ERROR_LOG"/>-->
+        <appender-ref ref="FILE_INFO_LOG"/>
+        <appender-ref ref="FILE_ERROR_LOG"/>
     </root>
 
 </configuration>

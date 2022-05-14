@@ -8,6 +8,10 @@ import org.testng.ITestListener;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * TestNg工具使用入口。
+ * 如果是多线程模式运行，需要将此类配置成testng的listener再使用
+ */
 public class TestNg implements ITestListener {
 
     private static final ThreadLocal<Attributes> ATTRIBUTES_THREAD_LOCAL = new ThreadLocal<>();

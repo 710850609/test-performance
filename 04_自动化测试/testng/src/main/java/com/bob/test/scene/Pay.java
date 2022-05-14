@@ -1,7 +1,6 @@
 package com.bob.test.scene;
 
 import com.apifan.common.random.source.NumberSource;
-import com.bob.test.core.report.ExtentTestNGIReporterListener;
 import com.bob.test.service.PayService;
 import com.bob.test.util.TestNg;
 import lombok.CustomLog;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.collections.CollectionUtils;
 

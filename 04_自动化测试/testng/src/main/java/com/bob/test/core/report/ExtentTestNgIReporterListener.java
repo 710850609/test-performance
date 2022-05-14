@@ -15,10 +15,9 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ExtentTestNGIReporterListener implements IReporter {
+public class ExtentTestNgIReporterListener implements IReporter {
     //生成的路径以及文件名
-    private static final String OUTPUT_FOLDER = "test-output/";
-//    private static final String FILE_NAME = "index.html";
+    private static final String OUTPUT_FOLDER = "report-output/";
 
     private ExtentReports extent;
 
