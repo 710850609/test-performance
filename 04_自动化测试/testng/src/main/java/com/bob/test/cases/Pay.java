@@ -1,8 +1,8 @@
-package com.bob.test.scene;
+package com.bob.test.cases;
 
 import com.apifan.common.random.source.NumberSource;
+import com.bob.test.core.TestNg;
 import com.bob.test.service.PayService;
-import com.bob.test.util.TestNg;
 import lombok.CustomLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +13,9 @@ import org.testng.collections.CollectionUtils;
 
 import java.util.List;
 
+/**
+ * 支付用例
+ */
 @CustomLog
 @SpringBootTest
 public class Pay extends AbstractTestNGSpringContextTests {
@@ -47,7 +50,7 @@ public class Pay extends AbstractTestNGSpringContextTests {
         log.info("【{}】订单使用【{}】方式支付", payOrderNo, payWay);
     }
 
-    @Test(description = "查询支付结果", priority = 4)
+    @Test(description = "查询支付结果", priority = 4, dependsOnMethods = {"pay"})
     public void query() {
         String payOrderNo = TestNg.attributes().get("payOrderNo", String.class);
         boolean result = payService.query(payOrderNo);

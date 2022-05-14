@@ -1,5 +1,6 @@
 package com.bob.test.util;
 
+import com.bob.test.core.TestNg;
 import lombok.CustomLog;
 
 import java.util.Map;

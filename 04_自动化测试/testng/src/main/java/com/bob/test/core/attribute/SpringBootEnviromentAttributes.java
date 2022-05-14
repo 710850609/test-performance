@@ -1,34 +1,27 @@
 package com.bob.test.core.attribute;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import com.bob.test.util.SpringUtil;
 import org.springframework.stereotype.Component;
 
-@Component
-public class SpringBootEnviromentAttributes implements EnviromentAttributes, ApplicationContextAware {
 
-    @Autowired
-    private ApplicationContext context;
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.context = applicationContext;
-    }
+/**
+ * 加入spring管理，避免测试框架比spring先加载，出现空指针
+ */
+//@Component
+public class SpringBootEnviromentAttributes implements EnviromentAttributes {
 
     @Override
     public Object get(String key) {
-        return context.getEnvironment().getProperty(key);
+        return SpringUtil.getEnvironmentProperty(key);
     }
 
     @Override
     public <T> T get(String key, Class<T> type) {
-        return context.getEnvironment().getProperty(key, type);
+        return SpringUtil.getEnvironmentProperty(key, type);
     }
 
     @Override
     public <T> T get(String key, Class<T> type, T defaultValue) {
-        return context.getEnvironment().getProperty(key, type, defaultValue);
+        return SpringUtil.getEnvironmentProperty(key, type, defaultValue);
     }
 }

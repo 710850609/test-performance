@@ -1,7 +1,7 @@
-package com.bob.test.scene;
+package com.bob.test.cases;
 
+import com.bob.test.core.TestNg;
 import com.bob.test.service.RefundService;
-import com.bob.test.util.TestNg;
 import lombok.CustomLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

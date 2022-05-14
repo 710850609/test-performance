@@ -91,7 +91,7 @@ public class TestReportLoggerFactory {
 
         private String formatMessage(Object[] objects) {
             Object[] params = Arrays.stream(objects).skip(1).filter(e -> {
-                return !e.getClass().isAssignableFrom(Marker.class) || !e.getClass().isAssignableFrom(Throwable.class);
+                return e == null || !e.getClass().isAssignableFrom(Marker.class) || !e.getClass().isAssignableFrom(Throwable.class);
             }).toArray();
             return MessageFormatter.arrayFormat((String) objects[0], params).getMessage();
         }

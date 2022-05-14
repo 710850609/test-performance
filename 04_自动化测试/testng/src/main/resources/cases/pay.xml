@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="支付流程测试" parallel="classes" thread-count="2">
+    <test name="支付-退款">
+        <classes>
+            <class name="com.bob.test.cases.Pay" />
+            <class name="com.bob.test.cases.Refund" />
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.bob.test.core.report.ExtentTestNgIReporterListener" />
+        <listener class-name="com.bob.test.core.TestNg" />
+    </listeners>
+</suite>
