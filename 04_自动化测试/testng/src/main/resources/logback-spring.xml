@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
+    <!-- 日志文件写入目录 -->
     <springProperty scope="context" name="logPath" source="logging.path" defaultValue="/logs" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">

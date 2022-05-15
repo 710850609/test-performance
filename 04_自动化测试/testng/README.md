@@ -51,3 +51,7 @@ resource --------------------------> 配置目录
 | httpclient    | HTTP客户端                                                                                  |
 | mybatis.plus  | 数据库ORM工具                                                                                 |
 | mockito             | mock工具                                                                                   |
+
+## 四、其他
+- 如果配置了```com.bob.test.core.report.ExtentTestNgIReporterListener```作为testng监听器生成报告，报告文件在当前运行目录中的```report-output```目录。
+- 如果需要执行```com.bob.test.cases.Db```相关用例，先在本地数据库执行```sql/db.sql```，修改对应环境的数据库链接配置，再执行。
