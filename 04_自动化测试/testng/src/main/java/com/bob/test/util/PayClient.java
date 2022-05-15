@@ -5,11 +5,15 @@ import lombok.CustomLog;
 
 import java.util.Map;
 
+/**
+ * 支付客户端
+ */
 @CustomLog
-public class PayUtil {
+public class PayClient {
 
     private static String getRequestUri(String uri) {
-        return TestNg.attributes().get("pay.host", String.class, "") + uri;
+        // 获取环境变量中配置的支付服务域名
+        return TestNg.env().get("pay.host", String.class, "") + uri;
     }
 
     public static void post(String uri, Map<Object, Object> params) {

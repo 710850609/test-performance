@@ -4,10 +4,8 @@ import com.bob.test.core.attribute.Attributes;
 import com.bob.test.core.attribute.CaseAttributes;
 import com.bob.test.core.attribute.EnviromentAttributes;
 import com.bob.test.core.attribute.SpringBootEnviromentAttributes;
-import org.springframework.stereotype.Component;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
-import org.testng.ITestResult;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -18,9 +16,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class TestNg implements ITestListener {
 
     private static final ThreadLocal<Attributes> ATTRIBUTES_THREAD_LOCAL = new InheritableThreadLocal<>();
-    private static EnviromentAttributes enviromentAttributes = new SpringBootEnviromentAttributes();
 
     private static AtomicInteger fetchedVariablesInNonListenerModeCount = new AtomicInteger(0);
+
+    private static final EnviromentAttributes ENV = new SpringBootEnviromentAttributes();
+
+    public static EnviromentAttributes env() {
+        return ENV;
+    }
 
     public static Attributes attributes() {
         Attributes attributes = ATTRIBUTES_THREAD_LOCAL.get();
@@ -28,14 +31,14 @@ public class TestNg implements ITestListener {
             if (fetchedVariablesInNonListenerModeCount.addAndGet(1) > 1) {
                 throw new RuntimeException("多线程运行模式，需要将TestNg配置成Listener");
             }
-            ATTRIBUTES_THREAD_LOCAL.set(new CaseAttributes(enviromentAttributes));
+            ATTRIBUTES_THREAD_LOCAL.set(new CaseAttributes());
         }
         return ATTRIBUTES_THREAD_LOCAL.get();
     }
 
     @Override
     public void onStart(ITestContext context) {
-        ATTRIBUTES_THREAD_LOCAL.set(new CaseAttributes(enviromentAttributes));
+        ATTRIBUTES_THREAD_LOCAL.set(new CaseAttributes());
     }
 
     @Override

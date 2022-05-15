@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+/**
+ * Spring工具，用于手动获取spring管理的java对象，或环境变量
+ */
 @Component
 public class SpringUtil implements ApplicationContextAware {
     private static ApplicationContext context;
