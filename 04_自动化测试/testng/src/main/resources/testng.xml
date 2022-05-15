@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- 此配置是项目testng的总入口，将需要每次执行的xml配置到此文件中 -->
 <suite name="自动化测试">
     <suite-files>
         <suite-file path="cases/pay.xml"></suite-file>
