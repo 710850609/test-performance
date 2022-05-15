@@ -12,7 +12,7 @@
 - 分离接口调用和用例，提高接口调用代码复用率
 
 ## 二、项目结构说明
-***(\*)是使用本项目基础编写测试用例需要关注的目录***
+***(\*)是使用本项目基础编写测试用例编写的目录***
 ``` text
 java/com/bob/test -----------------> 代码目录
 | cases ---------------------------> 具体测试用例，主要是组织依赖参数、调用service、断言、传递变量
@@ -27,9 +27,27 @@ java/com/bob/test -----------------> 代码目录
 
 resource --------------------------> 配置目录
 | cases ---------------------------> 测试套件定义(*)
-|-- application.properties --------> springboot默认配置
-|-- application-dev.properties ----> springboot dev环境配置
-|-- application-dev.properties ----> springboot test环境配置
-|-- loback-spring.xml -------------> springboot logback日志框架配置
-
+| application.properties ----------> springboot默认配置
+| application-dev.properties ------> springboot dev环境配置
+| application-dev.properties ------> springboot test环境配置
+| loback-spring.xml ---------------> springboot logback日志框架配置
 ```
+
+## 三、项目依赖
+### 1 必要依赖
+| 依赖库             | 说明                                                                                       |
+|:----------------|:-----------------------------------------------------------------------------------------|
+| testng          | 测试框架                                                                                     |
+| extentreports相关 | 测试报告生成工具                                                                                 |
+| lombok          | Java编译期自动生成基础代码工具                                                                        |
+| springboot      | spring体系定义的一套java开发规范，减少开发配置、代码                                                          |
+
+### 2 非必要依赖
+| 依赖库           | 说明                                                                                       |
+|:--------------|:-----------------------------------------------------------------------------------------|
+| hutool-all    | 中国个人开源的一些开发高频使用基础代码封装，如CSV、Excel操作，HTTP客户端，对象、集合工具，编码、加解密工具等。在线文档：https://hutool.cn/docs |
+| common-random | 随机生成工具，支持数字、日期、 地理、互联网、个人信息、金融、体育等随机数据。地址：https://github.com/shaoxiongdu/common-random   |
+| fastjson      | JSON处理工具                                                                                 |
+| httpclient    | HTTP客户端                                                                                  |
+| mybatis.plus  | 数据库ORM工具                                                                                 |
+| mockito             | mock工具                                                                                   |

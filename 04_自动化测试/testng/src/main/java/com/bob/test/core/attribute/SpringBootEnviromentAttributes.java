@@ -1,13 +1,11 @@
 package com.bob.test.core.attribute;
 
 import com.bob.test.util.SpringUtil;
-import org.springframework.stereotype.Component;
 
 
 /**
  * 加入spring管理，避免测试框架比spring先加载，出现空指针
  */
-//@Component
 public class SpringBootEnviromentAttributes implements EnviromentAttributes {
 
     @Override
