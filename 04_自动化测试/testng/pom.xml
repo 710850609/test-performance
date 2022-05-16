@@ -19,7 +19,7 @@
         <mybatis.plus.version>3.5.1</mybatis.plus.version>
         <mysql.driver.version>8.0.29</mysql.driver.version>
         <httpclient.version>4.5.13</httpclient.version>
-        <fastjson.version>2.0.2</fastjson.version>
+        <fastjson.version>1.2.80</fastjson.version>
         <hutool.version>5.8.0</hutool.version>
         <common.random.version>1.0.14</common.random.version>
         <maven.compiler.source>8</maven.compiler.source>
@@ -34,6 +34,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <!-- 排除junit相关依赖，只是避免错误使用与testng同注解名的junit注解 -->
             <exclusions>
                 <exclusion>
                     <groupId>org.junit.jupiter</groupId>
@@ -42,10 +43,6 @@
                 <exclusion>
                     <groupId>org.mockito</groupId>
                     <artifactId>mockito-junit-jupiter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.vaadin.external.google</groupId>
-                    <artifactId>android-json</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -131,6 +128,7 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <suiteXmlFiles>
+                        <!-- 指定maven执行test周期时，运行的testng xml文件 -->
                         <suiteXmlFile>./src/main/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
