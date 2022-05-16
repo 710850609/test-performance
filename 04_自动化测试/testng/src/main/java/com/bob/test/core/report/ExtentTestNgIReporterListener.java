@@ -8,6 +8,7 @@ import com.aventstack.extentreports.model.TestAttribute;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.*;
 import org.testng.xml.XmlSuite;
 
@@ -15,11 +16,14 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@Slf4j
 public class ExtentTestNgIReporterListener implements IReporter {
     //生成的路径以及文件名
     private static final String OUTPUT_FOLDER = "report-output/";
 
     private ExtentReports extent;
+
+    private String reportFilePath;
 
     @Override
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
@@ -98,6 +102,7 @@ public class ExtentTestNgIReporterListener implements IReporter {
 //        }
 
         extent.flush();
+        log.info("生成testng报告：{}", new File(reportFilePath).getAbsolutePath());
     }
 
     private void init() {
@@ -107,7 +112,9 @@ public class ExtentTestNgIReporterListener implements IReporter {
             reportDir.mkdir();
         }
         String fileName = new SimpleDateFormat("yyyy-MM-dd_HH-mm-dd").format(new Date());
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + fileName + ".html");
+        reportFilePath = OUTPUT_FOLDER + fileName + ".html";
+        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportFilePath);
+
         //怎么样解决cdn.rawgit.com访问不了的情况？设置静态文件的DNS
         htmlReporter.config().setResourceCDN(ResourceCDN.EXTENTREPORTS);
 
