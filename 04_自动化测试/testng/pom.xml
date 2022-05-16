@@ -24,6 +24,8 @@
         <common.random.version>1.0.14</common.random.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <!-- 指定编码，解决window cmd命令执行下，可能出现报告乱码 -->
+        <argLine>-Dfile.encoding=UTF-8</argLine>
     </properties>
 
     <dependencies>
