@@ -13,4 +13,7 @@
             <class name="com.bob.test.cases.Db" />
         </classes>
     </test>
+    <listeners>
+        <listener class-name="com.bob.test.core.report.TestNgExtentReport" />
+    </listeners>
 </suite>

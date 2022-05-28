@@ -15,7 +15,7 @@
     <description>基于testng接口自动化测试框架</description>
 
     <properties>
-        <testng.version>7.5</testng.version>
+        <testng.version>7.6.0</testng.version>
         <mybatis.plus.version>3.5.1</mybatis.plus.version>
         <mysql.driver.version>8.0.29</mysql.driver.version>
         <httpclient.version>4.5.13</httpclient.version>
@@ -37,16 +37,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <!-- 排除junit相关依赖，只是避免错误使用与testng同注解名的junit注解 -->
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>junit-jupiter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.mockito</groupId>
-                    <artifactId>mockito-junit-jupiter</artifactId>
-                </exclusion>
-            </exclusions>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.junit.jupiter</groupId>-->
+<!--                    <artifactId>junit-jupiter</artifactId>-->
+<!--                </exclusion>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.mockito</groupId>-->
+<!--                    <artifactId>mockito-junit-jupiter</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -89,28 +89,38 @@
             <artifactId>mockito-inline</artifactId>
             <version>4.5.1</version>
         </dependency>
-        <!-- extentreports 使用免费版本，高版本收费 -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
-            <version>3.1.5</version>
+            <version>5.0.9</version>
         </dependency>
-        <dependency>
-            <groupId>com.relevantcodes</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>2.41.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vimalselvam</groupId>
-            <artifactId>testng-extentsreport</artifactId>
-            <version>1.3.1</version>
-        </dependency>
+        <!-- extentreports 使用免费版本，高版本收费 -->
+<!--        <dependency>-->
+<!--            <groupId>com.aventstack</groupId>-->
+<!--            <artifactId>extentreports</artifactId>-->
+<!--            <version>3.1.5</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.relevantcodes</groupId>-->
+<!--            <artifactId>extentreports</artifactId>-->
+<!--            <version>2.41.2</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.vimalselvam</groupId>-->
+<!--            <artifactId>testng-extentsreport</artifactId>-->
+<!--            <version>1.3.1</version>-->
+<!--        </dependency>-->
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.7</version>
                 <configuration>
                     <mainClass>com.bob.test.Application</mainClass>
                     <layout>JAR</layout>
@@ -127,7 +137,8 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <!-- 最高只能使用这个版本 -->
+                <version>3.0.0-M4</version>
                 <configuration>
                     <suiteXmlFiles>
                         <!-- 指定maven执行test周期时，运行的testng xml文件 -->
