@@ -21,16 +21,18 @@
 java/com/bob/test -----------------> 代码目录
 | cases ---------------------------> 具体测试用例，主要是组织依赖参数、调用service、断言、传递变量
 | core ----------------------------> 辅助框架实现
-|--| TestNg -----------------------> TestNg辅助工具使用入口
-|--log
-|--| TestReportLoggerFactory ------> sl4j日志打印并输出到报告
+|--| Tests ------------------------> 自动化测试编码辅助工具使用入口
+|--log ----------------------------> 打印并输出到报告相关实现
+|--report -------------------------> 打印并输出到报告相关实现
+|----| TestNgExtentReport ---------> testng报告监听实现
+|----| JunitExtentReport ----------> junit5报告监听实现
 | dao -----------------------------> 数据访问层（数据库操作）(*)
 | service -------------------------> 接口调用实现(*)
 | util ----------------------------> 辅助工具类(*)
 | Application ---------------------> springboot启动类
 
 resource --------------------------> 配置目录
-| cases ---------------------------> 测试套件定义(*)
+| testng.xml ----------------------> 测试套件定义(*)
 | application.properties ----------> springboot默认配置
 | application-dev.properties ------> springboot dev环境配置
 | application-dev.properties ------> springboot test环境配置

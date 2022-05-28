@@ -3,7 +3,6 @@ package com.bob.test.core.report;
 import org.junit.jupiter.api.extension.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
