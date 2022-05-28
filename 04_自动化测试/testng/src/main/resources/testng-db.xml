@@ -7,6 +7,6 @@
         </classes>
     </test>
     <listeners>
-        <listener class-name="com.bob.test.core.report.ExtentTestNgIReporterListener" />
+        <listener class-name="com.bob.test.core.report.TestNgExtentReport" />
     </listeners>
 </suite>
