@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- verbose 越大，输出日志越详细 -->
+<suite name="支付流程测试" verbose="0">
+    <test name="支付-退款1">
+        <classes>
+            <class name="com.bob.test.cases.Pay" />
+            <class name="com.bob.test.cases.Refund" />
+        </classes>
+    </test>
+    <test name="支付-退款2">
+        <classes>
+            <class name="com.bob.test.cases.Pay" />
+            <class name="com.bob.test.cases.Refund" />
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.bob.test.core.report.TestNgExtentReport" />
+    </listeners>
+</suite>

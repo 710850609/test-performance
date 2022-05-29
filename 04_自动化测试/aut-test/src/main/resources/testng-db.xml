@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="数据库操作">
+    <test name="增改查">
+        <classes>
+            <class name="com.bob.test.cases.Db" />
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.bob.test.core.report.TestNgExtentReport" />
+    </listeners>
+</suite>
