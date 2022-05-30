@@ -1,5 +1,5 @@
 
-# 基于testng接口测试框架
+# 基于springboot、junit5/testng、extentreports接口测试框架
 ## 一、框架解决的问题
 ### 1 编码接口自动化测试面临的问题
 - 提高代码复用率
