@@ -20,7 +20,7 @@
         <mybatis.plus.version>3.5.1</mybatis.plus.version>
         <mysql.driver.version>8.0.29</mysql.driver.version>
         <httpclient.version>4.5.13</httpclient.version>
-        <fastjson.version>1.2.80</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <hutool.version>5.8.0</hutool.version>
         <common.random.version>1.0.14</common.random.version>
         <maven.compiler.source>8</maven.compiler.source>
