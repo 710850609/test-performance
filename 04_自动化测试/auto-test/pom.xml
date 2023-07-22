@@ -16,7 +16,7 @@
     <description>基于SpringBoot的接口自动化框架（支持junit5、testng）</description>
 
     <properties>
-        <testng.version>7.6.0</testng.version>
+        <testng.version>7.7.0</testng.version>
         <mybatis.plus.version>3.5.1</mybatis.plus.version>
         <mysql.driver.version>8.0.29</mysql.driver.version>
         <httpclient.version>4.5.13</httpclient.version>
